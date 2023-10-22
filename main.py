@@ -1,1 +1,3 @@
-var = 3455
+
+def test()-> list:
+    pass
