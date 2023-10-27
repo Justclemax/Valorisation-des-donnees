@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 connexion = mysql.connector.connect(
     user='root',
     password='root',
@@ -20,6 +21,7 @@ resultats = curseur.fetchall()
 largeur_colonnes = [20, 20, 20, 20]
 
 # Afficher les entêtes
+
 print("{} ".format('-' * (sum(largeur_colonnes) + 3 + 3*len(largeur_colonnes))))
 print("| {:<{}} | {:<{}} | {:<{}} | {:<{}} |".format('Nom', largeur_colonnes[0], 'Pays', largeur_colonnes[1], 'Sous-pays', largeur_colonnes[2], 'ID Géographique', largeur_colonnes[3]))
 print("|{} ".format('-' * (sum(largeur_colonnes) + 3 + 3*len(largeur_colonnes))))
@@ -32,3 +34,5 @@ for resultat in resultats:
 # Fermer le curseur et la connexion
 curseur.close()
 connexion.close()
+
+
