@@ -1,11 +1,9 @@
 import mysql.connector
 
-
 connexion = mysql.connector.connect(
     user='root',
-    password='root',
+    password='',
     host='localhost',
-    unix_socket='/Applications/MAMP/tmp/mysql/mysql.sock',
     database='ecommerce',
 )
 
