@@ -7,10 +7,11 @@ import mysql.connector
 
 def se_connecter() -> object:
     connexion = mysql.connector.connect(
-         user='root',
-        password='',
+        user='root',
+        password='root',
         host='localhost',
         database='ecommerce',
+        unix_socket= '/Applications/MAMP/tmp/mysql/mysql.sock',
     )
     return connexion
 
