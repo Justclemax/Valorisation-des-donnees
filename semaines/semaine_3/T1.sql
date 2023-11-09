@@ -11,7 +11,7 @@ ALTER TABLE clients
 ADD ville VARCHAR(37),
 ADD pays VARCHAR(44),
 ADD mdp VARCHAR(40);
-ALTER TABLE `produits` CHANGE `idProduit` `idProduit` VARCHAR(50) NOT NUL;
+ALTER TABLE `produits` CHANGE `idProduit` `idProduit` VARCHAR(50) NOT NULL;
 INSERT INTO produits (idProduit)
 SELECT `Uniq Id`
 FROM products;
@@ -28,14 +28,27 @@ CREATE TABLE lignescommandes(
 );
 
 
+
+
+
 INSERT INTO Produits (idProduit, nomproduit, prix, poids)
 SELECT `Uniq Id`, `Product Name`, `Selling Price`, `Shipping Weight`
 FROM `products`;
-INSERT INTO Produits (`idCategorie`)
+INSERT INTO Produits (idCategorie)
 SELECT `idCategorie`
-FROM categories;
+FROM `categories`;
+INSERT INTO Produits (idProduit)
+SELECT `Uniq Id`
+FROM `products` AND SELECT  `idCategorie`
+FROM `categories`; 
 
 ALTER TABLE `clients` 
 CHANGE COLUMN `idClient` `idClient` VARCHAR(50) NOT NULL, 
-ADD PRIMARY KEY (`idClient`);
+ADD PRIMARY KEY (`idClient`)
 
+-- Exemple d'insertion de lignes de commande aléatoires
+INSERT INTO lignescommandes (idCommande, noligne, idProduit, quantite)
+SELECT idCommande, ROUND(RAND()*2) + 1, idProduit, ROUND(RAND()*3) + 1
+FROM commande, produits
+ORDER BY RAND()
+LIMIT 20; -- Limitez le nombre de lignes générées si nécessaire

@@ -4,20 +4,20 @@ import random
 
 # Définit une classe pour gérer les commandes
 class GestionnaireCommandes:
-    def __init__(self, host, user, password, database):
+    def __init__(self, host, user, password, database, unix_socket):
         # Initialise la connexion à la base de données
         self.connection = mysql.connector.connect(
             host=host,
             user=user,
             password=password,
             database=database,
-          
+            unix_socket=unix_socket
         )
         # Initialise un curseur pour exécuter des requêtes SQL
         self.curseur = self.connection.cursor()
 
     # Méthode pour récupérer les IDs de produits depuis la table produits
-    def recuperer_ids_produits(self) -> list:
+    def recuperer_ids_produits(self):
         self.curseur.execute("""
         SELECT idProduit
         FROM produits;
@@ -36,7 +36,7 @@ class GestionnaireCommandes:
         # Récupère les IDs de commandes existantes
         self.curseur.execute("""
         SELECT idCommande
-        FROM commande;
+        FROM commandes;
         """)
         commandes = self.curseur.fetchall()
 
@@ -83,13 +83,16 @@ if __name__ == "__main__":
     gestionnaire = GestionnaireCommandes(
         host="localhost",
         user="root",
-        password="",
+        password="root",
         database="ecommerce",
-        
+        unix_socket='/Applications/MAMP/tmp/mysql/mysql.sock'
     )
 
     # Insère des lignes de commandes dans la base de données
-    gestionnaire.inserer_lignes_commandes() 
-        
+    if gestionnaire.inserer_lignes_commandes():
+        print("L'insertion des lignes de commandes a été effectuée avec succès.")
+    else:
+        print("Erreur lors de l'insertion des lignes de commandes.")
+
     # Ferme la connexion à la base de données
     gestionnaire.fermer_connexion()

@@ -4,7 +4,7 @@ import random
 from datetime import datetime, timedelta
 
 
-# la classe qui m
+# la classe 
 class AjouDonneeCommandes:
     def __init__(self, host, user, password, database, unix_socket) :
         self.connection = mysql.connector.connect(
@@ -28,7 +28,7 @@ class AjouDonneeCommandes:
                 random_date = start_date + timedelta(days=random.randint(0, (end_date - start_date).days))
                 statut = random.choice(['en cours', 'payée', 'livrée', 'annulée'])
                 self.curseur.execute("""
-                INSERT INTO commande (idClient, dateCommande, statut)
+                INSERT INTO commandes (idClient, dateCommande, statut)
                 VALUES (%s, %s, %s);
                 """, (client, random_date, statut))
         self.connection.commit()
