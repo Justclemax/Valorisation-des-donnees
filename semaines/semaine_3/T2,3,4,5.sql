@@ -7,7 +7,8 @@ CREATE TABLE categories(
 		
 );
 
-CREATE TABLE commande(
+
+CREATE TABLE commandes(
    idCommande INT NOT NULL AUTO_INCREMENT,
    dateCommande DATE,
    statut VARCHAR(50),
@@ -21,9 +22,8 @@ CREATE TABLE produits(
    nomproduit VARCHAR(200),
    prix VARCHAR(19),
    poids VARCHAR(12),
-   idCategorie INT NOT NULL,
-   PRIMARY KEY(idProduit),
-   FOREIGN KEY(idCategorie) REFERENCES categories(idCategorie)
+   idCategorie INT,
+   PRIMARY KEY(idProduit)
    );
 
 
@@ -37,6 +37,6 @@ CREATE TABLE lignescommandes(
    quantite INT,
    idProduit VARCHAR(32),
    PRIMARY KEY(idCommande, noligne),
-   FOREIGN KEY(idCommande) REFERENCES commande(idCommande),
+   FOREIGN KEY(idCommande) REFERENCES commandes(idCommande),
    FOREIGN KEY(idProduit) REFERENCES produits(idProduit)
 );
