@@ -1,6 +1,5 @@
 # Valorisation des données
 
-
 ## Semaine 1
 
 **Vidéo de présentation du projet complet:** [Lien vers la vidéo](https://youtu.be/HL15zD-kppc)
@@ -78,3 +77,4 @@
 - Programme de génération aléatoire en Python
 
 ...
+ 

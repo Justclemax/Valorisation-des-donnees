@@ -15,3 +15,14 @@ SET poids =
     WHEN poids LIKE '%pound%' THEN CAST(REPLACE(poids, ' pound', '') AS DECIMAL(10,2))
     ELSE poids
   END;
+
+ALTER TABLE produits
+DROP FOREIGN KEY produits_ibfk_1;
+ALTER TABLE produits
+MODIFY idCategorie INT AUTO_INCREMENT
+
+ALTER TABLE produits
+ADD FOREIGN KEY (idCategorie) REFERENCES categories(idCategorie);
+
+DELETE FROM produits
+WHERE prix IS NULL;

@@ -13,25 +13,6 @@ ADD pays VARCHAR(44),
 ADD mdp VARCHAR(40);
 
 
-
-
-
-
-
-
-
-
-
-ALTER TABLE produits
-ADD idCategorie INT,
-ADD FOREIGN KEY (idCategorie) REFERENCES categories(idCategorie);
-
-
-
-
-
-
-
 ALTER TABLE `clients` 
 CHANGE COLUMN `idClient` `idClient` VARCHAR(50) NOT NULL, 
 ADD PRIMARY KEY (`idClient`)
