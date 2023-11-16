@@ -19,8 +19,8 @@ class GestionnaireCommandes:
     # Méthode pour récupérer les IDs de produits depuis la table produits
     def recuperer_ids_produits(self):
         self.curseur.execute("""
-        SELECT idProduit
-        FROM produits;
+        SELECT `Uniq Id`
+        FROM products;
         """)
         # Retourne une liste d'IDs de produits
         return [row[0] for row in self.curseur.fetchall()]
@@ -36,7 +36,7 @@ class GestionnaireCommandes:
         # Récupère les IDs de commandes existantes
         self.curseur.execute("""
         SELECT idCommande
-        FROM commandes;
+        FROM commande;
         """)
         commandes = self.curseur.fetchall()
 

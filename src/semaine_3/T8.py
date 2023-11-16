@@ -28,7 +28,7 @@ class AjouDonneeCommandes:
                 random_date = start_date + timedelta(days=random.randint(0, (end_date - start_date).days))
                 statut = random.choice(['en cours', 'payée', 'livrée', 'annulée'])
                 self.curseur.execute("""
-                INSERT INTO commandes (idClient, dateCommande, statut)
+                INSERT INTO commande (idClient, dateCommande, statut)
                 VALUES (%s, %s, %s);
                 """, (client, random_date, statut))
         self.connection.commit()
